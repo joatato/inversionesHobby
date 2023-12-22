@@ -1,0 +1,9 @@
+Lee los cambios en el scss y se actualiza automaticamente
+    sass --watch estilos/main.scss:estilos/main.css
+
+Genera el archivo main.css compilando todo lo que importa el main.scss
+    sass estilos/main.scss estilos/main.css
+
+
+
+No olvidarme de aprender a utilizar los Snippets

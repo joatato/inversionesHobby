@@ -1,0 +1,70 @@
+<section>
+    <div display="flex">
+        <h1>Creación de Proyecto</h1>
+
+        <a href="/" class="back-button">Volver a la Página Principal</a>
+    </div>
+    <hr>
+    <h2>Ingrese datos:</h2>
+    <form>
+        <div class="c1">
+            <label for="name">Nombre:</label>
+            <input type="text" placeholder="Ingrese el nombre del proyecto" id="name" name="name">
+
+            <label for="description">Descripción:</label>
+            <textarea placeholder="Ingrese la descripción del proyecto" id="description" name="description"
+                ></textarea>
+        </div>
+        <div class="c1">
+            <label for="amountNecessary">Monto necesario:</label>
+            <input type="number" placeholder="Ingrese el monto necesario" id="amountNecessary" name="amountNecessary">
+
+            <label for="steps">Pasos del proyecto:</label>
+            <textarea placeholder="Ingrese los pasos del proyecto (separados por comas)" id="steps"
+                name="steps"></textarea>
+        </div>
+
+        <div class="c1">
+            <label for="locationAddress">Dirección:</label>
+            <input type="text" placeholder="Ingrese la dirección" id="locationAddress" name="location.address" >
+
+            <label for="locationCity">Ciudad:</label>
+            <input type="text" placeholder="Ingrese la ciudad" id="locationCity" name="location.city">
+        </div>
+
+        <div class="c1">
+            <label for="locationState">Estado:</label>
+            <input type="text" placeholder="Ingrese el estado" id="locationState" name="location.state">
+
+            <label for="locationCountry">País:</label>
+            <input type="text" placeholder="Ingrese el país" id="locationCountry" name="location.country">
+        </div>
+
+        <div class="c1">
+            <label for="locationProvince">Provincia:</label>
+            <input type="text" placeholder="Ingrese la provincia" id="locationProvince" name="location.province">
+        </div>
+
+        <!-- Agrega los demás campos según sea necesario -->
+
+        <div id="drop-area">
+            <input type="file" id="thumbnail" name="thumbnail" accept="image/*" onchange="previewImage(event)">
+            <button id="file-upload-btn" type="button" onclick="document.getElementById('thumbnail').click()">Ingresar
+                Archivo</button>
+
+            <div id="drop-area" class="drop-area" ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
+                ondragleave="handleDragLeave(event)">
+                <label for="thumbnail" id="drag-text">
+                    Arrastra y suelta una imagen aquí
+                </label>
+                <img id="preview" src="#" alt="Thumbnail Preview" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Otros campos... -->
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script src="/js/registerProject.js"></script>
+</section>

@@ -1,0 +1,15 @@
+emprendimiento
+
+_name
+_owner
+_description
+_amountNecesary
+_amountAlready
+_stepsOfTheProyect
+_investors
+__amountPherInvestor
+_PuntuacionDelProyecto
+_Intereses
+_FechaEstimadaParaEmpezar
+_FechaLimiteParaRecaudar
+_FechaEstimadaADevolverInteres

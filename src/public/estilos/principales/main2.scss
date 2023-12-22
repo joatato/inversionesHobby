@@ -1,0 +1,112 @@
+main {
+  padding: $espaciado-mediano;
+
+  section {
+    margin-bottom: $espaciado-grande;
+    padding: $espaciado-mediano;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    text-align: center;
+
+    h2 {
+      font-size: $tamano-fuente-subtitulo;
+      margin-bottom: $espaciado-mediano;
+      color: $color-secundario;
+    }
+
+    p {
+      font-size: $tamano-fuente-normal;
+      margin-bottom: $espaciado-pequeno;
+      color: $color-texto-body;
+    }
+
+    img {
+      border: 1px solid #ddd;
+      border-radius: $borde-redondeado;
+      margin-bottom: $espaciado-mediano;
+    }
+
+    div {
+      margin-bottom: $espaciado-mediano;
+    }
+  }
+
+  .team {
+    h2 {
+      font-size: $tamano-fuente-subtitulo;
+      margin-bottom: $espaciado-mediano;
+      color: $color-primario;
+    }
+
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: $espaciado-mediano;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: $espaciado-pequeno;
+      }
+
+      p {
+        font-size: $tamano-fuente-normal;
+        margin-bottom: $espaciado-pequeno;
+        color: $color-texto-body;
+      }
+    }
+  }
+
+  .contact {
+    h2 {
+      font-size: $tamano-fuente-subtitulo;
+      margin-bottom: $espaciado-mediano;
+      color: $color-terciario;
+    }
+
+    p {
+      font-size: $tamano-fuente-normal;
+      margin-bottom: $espaciado-mediano;
+      opacity: 0.8;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $espaciado-mediano;
+
+      label {
+        font-size: $tamano-fuente-normal;
+        margin-bottom: $espaciado-pequeno;
+        color: $color-texto-body;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: $espaciado-pequeno;
+        border: 1px solid #ddd;
+        border-radius: $borde-redondeado;
+      }
+
+      button {
+        background-color: $color-terciario;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: $borde-redondeado;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($color-terciario, 10%);
+        }
+      }
+    }
+  }
+
+  // Resto de los estilos para el main
+}

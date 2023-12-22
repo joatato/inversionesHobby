@@ -1,0 +1,43 @@
+/* header.scss */
+
+header {
+  background-color: $color-fondo-header;
+  color: $color-texto-header;
+  box-shadow: 0px 2px 5px $color-sombra;
+
+  display: flex;
+  flex-direction: column;
+
+  
+  align-items: center; // Alinea el contenido al centro verticalmente
+  justify-content: center; // Alinea el contenido al centro horizontalmente
+  
+
+  h1 {
+    font-size: $tamano-fuente-titulo;
+    margin-bottom: $espaciado-mediano;
+    color: $color-primario;
+  }
+
+  p {
+    font-size: $tamano-fuente-normal;
+    margin-bottom: $espaciado-mediano;
+    opacity: 0.8;
+  }
+
+  button {
+    background-color: $color-boton-normal;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: $borde-redondeado;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $color-boton-hover;
+    }
+  }
+
+  // Resto de los estilos para el header
+}

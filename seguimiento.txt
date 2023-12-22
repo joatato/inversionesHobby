@@ -1,0 +1,3 @@
+En el register Project
+    Anda mal el envio de datos ya desde el front. No puedo hacer logs de cuando se clickea el submit
+

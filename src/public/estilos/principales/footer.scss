@@ -1,0 +1,12 @@
+footer {
+    background-color: $color-fondo-footer;
+    color: $color-texto-footer;
+    padding: $espaciado-mediano;
+    text-align: center;
+  
+    p {
+      font-size: $tamano-fuente-normal;
+    }
+  
+    // Resto de los estilos para el footer
+  }
