@@ -1,3 +1,5 @@
 En el register Project
     Anda mal el envio de datos ya desde el front. No puedo hacer logs de cuando se clickea el submit
 
+
+Ahora si puedo leer los datos desde el front. Me queda poder asignar el id del owner y ver que hago con el thumbnail
