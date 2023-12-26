@@ -1,5 +1,14 @@
 const form = document.getElementById('loginForm');
 
+function revisarDatos(datos) {
+    const password = datos.password
+    if (password.length > 2 ) {
+        return true
+    }else{
+        return false
+    }
+}
+
 form.addEventListener('submit', evt => {
     evt.preventDefault();
 
@@ -9,23 +18,27 @@ form.addEventListener('submit', evt => {
     const body = { email, password }
 
     console.log(body);
-
-    fetch('/api/sessions/login', {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(result => {
-        return result.json()
-    }).then(json => {
-        console.log(json);
-        localStorage.setItem('CoderTouukken', json.token)
-        document.cookie = `codertokenCliente=${json.token};max-age=3600`
-        document.location.href = `/?token=${json.token}`;
-    }).catch(Error => {
-        console.log(Error)
-    })
+    if (revisarDatos(body)) {
+        
+        fetch('/api/sessions/login', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(result => {
+            return result.json()
+        }).then(json => {
+            console.log(json);
+            localStorage.setItem('CoderTouukken', json.token)
+            document.cookie = `codertokenCliente=${json.token};max-age=3600`
+            document.location.href = `/?token=${json.token}`;
+        }).catch(Error => {
+            console.log(Error)
+        })
+    }else{
+        alert("Datos erroneoooos")
+    }
 
 })
 

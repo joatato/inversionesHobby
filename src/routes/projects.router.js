@@ -1,5 +1,7 @@
 import { projectsModel } from '../dao/models/projects.models.js';
 import express from 'express';
+import { usersModel } from '../dao/models/users.models.js';
+import { validarJWT } from '../utils/jwt.utils.js';
 const router = express.Router();
 
 // Obtener todos los proyectos
@@ -27,22 +29,39 @@ router.get('/:projectId', async (req, res) => {
 });
 
 // Crear un nuevo proyecto
-router.post('/', async (req, res) => {
+router.post('/', validarJWT,async (req, res) => {
   const newProject = new projectsModel(req.body);
 
   console.log("Ha llegado un posteo")
 
   try {
+    // const token = req.cookies.codertoken; // Obtiene el token desde la cookie
+
+    // // Verifica si hay un token presente
+    // if (!token) {
+    //   return res.status(401).json({ message: 'No hay token, autorización denegada' });
+    // }
+
+    // // Decodifica el token para obtener la información del usuario
+    // const decoded = jwt.verify(token, process.env.TOKEN_SECRET); // Reemplaza 'tu_secreto_secreto' con tu clave secreta
+
+    // El ID del usuario debería estar presente en los datos decodificados
+    // const ownerId = decoded.id;
+    const ownerId = req.user._id
+    console.log(req.user);
+
+    // Asigna el ID del propietario al proyecto antes de guardarlo
+    newProject.owner = ownerId;
     const savedProject = await newProject.save();
     // Obtén el ID del propietario del proyecto desde req.body
-    const ownerId = req.body.owner;
+    // const ownerId = req.body.owner;
     // Actualiza el array de proyectos del usuario propietario
     await usersModel.findByIdAndUpdate(ownerId, { $push: { proyects: savedProject._id } });
     res.status(201).json(savedProject);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-  
+
 });
 
 // Actualizar un proyecto por ID

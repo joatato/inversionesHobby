@@ -47,46 +47,37 @@ function handleDrop(event) {
     }
 }
 
-function revisarDatos(formData) {
-    const name = formData.name
-    // const name = formData.get('name');
-    // const description = formData.get('description');
-    // const amountNecessary = formData.get('amountNecessary');
-    // const steps = formData.get('steps');
-    // const locationAddress = formData.get('location.address');
-    // const locationCity = formData.get('location.city');
-    // const locationState = formData.get('location.state');
-    // const locationCountry = formData.get('location.country');
-    // const locationProvince = formData.get('location.province');
-    // const thumbnail = formData.get('thumbnail');
-
-    // // Realiza la validación de los datos según tus criterios
-    // if (!name || !description || !amountNecessary || !steps || !locationAddress || !locationCity || !locationState || !locationCountry || !locationProvince || !thumbnail) {
-    //     console.log("Faltan datos");
-    //     return false; // Detiene el envío del formulario si hay campos vacíos
-    // }
-
-    // Puedes agregar más validaciones según sea necesario
-    if (!name) {
-        console.log("No ingreso nombre");
-        return false
-    }
-    return true; // Continúa con el envío del formulario si todos los datos son válidos
-}
 
 
+const form = document.getElementById('loginForm');
 
-function submitForm() {
+
+form.addEventListener('submit', evt => {
+    evt.preventDefault();
+
     console.log("Se lee el submit");
     // Obtener los datos del formulario
-    const formData = new FormData(document.getElementById('projectForm'));
+    const formData = new FormData(document.getElementById('loginForm'));
+    const data = {};
+
+    // Iterar sobre cada entrada del FormData y asignarla al objeto data
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    const jsonData = JSON.stringify(data);
+
+
 
     // Realizar la solicitud POST usando Fetch
     if (revisarDatos(formData)) {
         console.log("Un exito el ingreso de datos");
+        console.log(jsonData);
         fetch('/api/projects', {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
         })
             .then(response => response.json())
             .then(data => {
@@ -100,4 +91,27 @@ function submitForm() {
     } else {
         alert('Todos los campos son obligatorios. Por favor, complete el formulario.');
     }
+
+})
+
+function revisarDatos(formData) {
+    const name = formData.get('name');
+    const description = formData.get('description');
+    const amountNecessary = formData.get('amountNecessary');
+    const steps = formData.get('steps');
+    const locationAddress = formData.get('location.address');
+    const locationCity = formData.get('location.city');
+    const locationState = formData.get('location.state');
+    const locationCountry = formData.get('location.country');
+    const locationProvince = formData.get('location.province');
+    const thumbnail = formData.get('thumbnail');
+
+    // Realiza la validación de los datos según tus criterios
+    if (!name || !description || !amountNecessary || !steps || !locationAddress || !locationCity || !locationState || !locationCountry || !locationProvince || !thumbnail) {
+        console.log("Faltan datos");
+        return false; // Detiene el envío del formulario si hay campos vacíos
+    }
+
+    return true; // Continúa con el envío del formulario si todos los datos son válidos
 }
+
