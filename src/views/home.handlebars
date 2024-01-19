@@ -1,14 +1,3 @@
-<header>
-    <h1>Inversiones Hobby</h1>
-    <p>¡Bienvenido, {{name}}!</p>
-    <div>
-        <button>Inicio</button>
-        <button>Opciones</button>
-
-        <a href="/api/sessions/logout">Logout</a>
-        <a href="/registerProject">Registrar Proyecto</a>
-    </div>
-</header>
 <main>
     <section class="hero">
         <div class="hero-content">
@@ -17,42 +6,112 @@
             <button>Explorar Proyectos</button>
         </div>
     </section>
-    <section class="investment-options">
-        <div>
-            <img src="imagen1.jpg" alt="Proyecto 1">
-            <img src="imagen2.jpg" alt="Proyecto 2">
+
+    {{#if isAdmin}}
+    {{#if projects}}
+    {{#each projects}}
+    <section class="project-card" data-project-id="{{this._id}}">
+        <div class="investment-options">
+            <div class="project-images">
+                {{#each this.thumbnail}}
+                <img src="{{this.thumbnail}}" alt="Proyecto {{@index}}">
+                {{/each}}
+                <img src="files/img/{{this.thumbnail}}" alt="">
+            </div>
+            <div class="investment-info">
+                <h2>Explora Nuestras Opciones de Inversión</h2>
+                <p>Selecciona cuánto deseas invertir y únete a nosotros en el camino hacia el éxito financiero.</p>
+                <select>
+                    <option value="1000">$1,000</option>
+                    <option value="5000">$5,000</option>
+                    <option value="10000">$10,000</option>
+                </select>
+                <p>Confiabilidad del Proyecto: Alta</p>
+            </div>
         </div>
-        <div>
-            <h2>Explora Nuestras Opciones de Inversión</h2>
-            <p>Selecciona cuánto deseas invertir y únete a nosotros en el camino hacia el éxito financiero.</p>
-            <select>
-                <option value="1000">$1,000</option>
-                <option value="5000">$5,000</option>
-                <option value="10000">$10,000</option>
-            </select>
-            <p>Confiabilidad del Proyecto: Alta</p>
+
+        <div class="project-info">
+            <h2>Detalles del Proyecto</h2>
+            <p><strong>{{this.name}} </strong>presenta un proyecto emocionante que busca recaudar fondos para...</p>
+            <p>{{this.description}}</p>
+            <div class="project-stats">
+                <div>
+                    <p>Estimación de Recaudación:</p>
+                    <p>{{this.amountNecessary}}</p>
+                </div>
+                <div>
+                    <p>Interés Anual:</p>
+                    <p>{{this.interests}}%</p>
+                </div>
+                <div>
+                    <p>Duración:</p>
+                    <p>{{duration}} meses</p>
+                </div>
+            </div>
+            <p>Pasos necesarios: {{this.steps}}</p>
+            <p>Monto por Paso: ${{this.amountPerStep}}</p>
+        </div>
+        <a href="/project/{{this._id}}">Ir al Proyecto: {{this._id}}</a>
+        <div class="delete-button">
+            <button onclick="eliminarProyecto('{{this._id}}')">Eliminar Proyecto {{this._id}}</button>
         </div>
     </section>
-    <section class="project-info">
-        <h2>Detalles del Proyecto</h2>
-        <p>La empresa "Inversiones Hobby" presenta un proyecto emocionante que busca recaudar fondos para...</p>
-        <div class="project-stats">
-            <div>
-                <p>Estimación de Recaudación:</p>
-                <p>$X</p>
+    {{/each}}
+    {{else}}
+    <p>No hay proyectos disponibles en este momento.</p>
+    {{/if}}
+    {{else}}
+
+    {{#if projects}}
+    {{#each projects}}
+    <section class="project-card">
+        <div class="investment-options">
+            <div class="project-images">
+                {{#each this.thumbnail}}
+                <img src="{{this.thumbnail}}" alt="Proyecto {{@index}}">
+                {{/each}}
+                <img src="files/img/{{this.thumbnail}}" alt="">
             </div>
-            <div>
-                <p>Interés Anual:</p>
-                <p>Y%</p>
-            </div>
-            <div>
-                <p>Duración:</p>
-                <p>Z meses</p>
+            <div class="investment-info">
+                <h2>Explora Nuestras Opciones de Inversión</h2>
+                <p>Selecciona cuánto deseas invertir y únete a nosotros en el camino hacia el éxito financiero.</p>
+                <select>
+                    <option value="1000">$1,000</option>
+                    <option value="5000">$5,000</option>
+                    <option value="10000">$10,000</option>
+                </select>
+                <p>Confiabilidad del Proyecto: Alta</p>
             </div>
         </div>
-        <p>Pasos necesarios: 5</p>
-        <p>Monto por Paso: $A</p>
+
+        <div class="project-info">
+            <h2>Detalles del Proyecto</h2>
+            <p><strong>{{this.name}} </strong>presenta un proyecto emocionante que busca recaudar fondos para...</p>
+            <p>{{this.description}}</p>
+            <div class="project-stats">
+                <div>
+                    <p>Estimación de Recaudación:</p>
+                    <p>{{this.amountNecessary}}</p>
+                </div>
+                <div>
+                    <p>Interés Anual:</p>
+                    <p>{{this.interests}}%</p>
+                </div>
+                <div>
+                    <p>Duración:</p>
+                    <p>{{duration}} meses</p>
+                </div>
+            </div>
+            <p>Pasos necesarios: {{this.steps}}</p>
+            <p>Monto por Paso: ${{this.amountPerStep}}</p>
+        </div>
+        <a href="/project/{{this._id}}">Ir al Proyecto</a>
     </section>
+    {{/each}}
+    {{else}}
+    <p>No hay proyectos disponibles en este momento.</p>
+    {{/if}}
+{{/if}}
     <section class="similar-projects">
         <h2>Proyectos Similares</h2>
         <div>
@@ -119,6 +178,5 @@
         </form>
     </section>
 </main>
-<footer>
-    <p>&copy; 2023 Inversiones Hobby. Todos los derechos reservados.</p>
-</footer>
+
+<script src="/js/home.js"></script>

@@ -1,7 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "scss": "node-sass src/estilos/main.scss -o src/public/estilos",
+    "scssWatch": "echo 'Escuchando cambios en SCSS...' && node-sass src/estilos/main.scss -o src/public/estilos --watch"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -17,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "mongoose-paginate-v2": "^1.7.4",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1"
   }

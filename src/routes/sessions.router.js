@@ -66,6 +66,7 @@ router.post('/login', async (req, res) => {
     }
 
     let userConRol = {
+        id: user._id,
         name: user.name,
         lastname: user.lastname,
         email,
@@ -75,20 +76,33 @@ router.post('/login', async (req, res) => {
     
     let token=creaJWT(userConRol);
 
-    // res.redirect('/')
-    // res.cookie('TatoToken',token,{maxAge:1000*60*120}).redirect('/');
-    res.cookie('codertoken',token,{maxAge:1000*60*120, httpOnly:true})
-    .cookie('cookieConHttpOnly',token,{maxAge:1000*60*120, httpOnly:true})
-    .cookie('cookieSinHttpOnly',token,{maxAge:1000*60*120}).send({token});
+    res.cookie('userToken',token,{maxAge:1000*60*120, httpOnly:true})
+    .cookie('userTokenHttpOnly',token,{maxAge:1000*60*120, httpOnly:true})
+    .cookie('userTokenSinHttpOnly',token,{maxAge:1000*60*120}).send({token});
 
 
 })
+
+// Log Out de Token
 router.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            res.sendStatus(500);
-        } else {
-            res.redirect('/login');
-        }
-    });
-})
+    // Limpiar las cookies relacionadas con el token
+    res.clearCookie('codertoken');
+    res.clearCookie('cookieConHttpOnly');
+    res.clearCookie('cookieSinHttpOnly');
+
+    // Redirigir a la página de inicio de sesión u otra página deseada
+    res.redirect('/login');
+});
+
+
+// Log Out de sessiones
+
+// router.get('/logout', (req, res) => {
+//     req.session.destroy((err) => {
+//         if (err) {
+//             res.sendStatus(500);
+//         } else {
+//             res.redirect('/login');
+//         }
+//     });
+// })

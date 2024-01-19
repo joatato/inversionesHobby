@@ -26,7 +26,7 @@ import { inicializaEstrategias } from './config/passport.config.js';
 import passport from 'passport';
 import __dirname from './utils/utils.js';
 import cookieParser from 'cookie-parser';
-//-------------------------------------------------------------------------------------
+
 
 const PORT = config.app.PORT
 

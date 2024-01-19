@@ -45,15 +45,11 @@ const usersSchema = new Schema(
       type: Date,
       default: Date.now
     },
-    proyects: [
-      {
-        proyect: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'projects',
-          required: true,
-        },
-      },
-    ],
+    projects: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'projects',
+      required: true,
+    }],
     investments: [
       {
         project: {

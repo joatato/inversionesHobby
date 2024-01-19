@@ -2,4 +2,43 @@ En el register Project
     Anda mal el envio de datos ya desde el front. No puedo hacer logs de cuando se clickea el submit
 
 
-Ahora si puedo leer los datos desde el front. Me queda poder asignar el id del owner y ver que hago con el thumbnail
+Trabajando en el CRUD del modelo project
+    Ahora si puedo leer los datos desde el front. Me queda poder asignar el id del owner y ver que hago con el thumbnail
+
+Seguimos en el Create del proyecto
+    Ahora se guarda la url del thumbnail
+    Falta hacer que se guarde el archivo de la imagen localmente en public/files/img
+
+Luego de lo anterior deberia llamar los proyectos y mostrarlos
+
+Crear un project.controller.js
+
+Poder eliminar los proyectos desde el front si eres ADMIN
+    No me esta permitiendo por lo que lee isAdmin = undefined
+    Pero si esta fuera de la estructura del each si lo lee como "true"
+    Esta raro
+
+--------------------------------------- Todo lo de arriba esta solucionado ---------------------------------------
+------------------------------------------------ Vamos carajooo!! ------------------------------------------------
+
+
+
+Al final hacer un buen Read de los proyectos (los filtros de busqueda)
+
+Iterar las imagenes de los proyectos cuando a estos 
+
+Me parece que no deberia mandar el id del usuario al front
+    Debo solucionar el añadirle al usuario correspondiente el proyecto creado y al proyecto el id del usuario
+    Para eso debo hacer una busqueda en la DB segun el email ya que este es unico (FACIL)
+
+
+------------------------------------------ Todo lo de arriba esta pausa ------------------------------------------
+
+Hacer el Update correcto de los proyectos con su respectiva pestaña de edicion
+    Debo hacer la pesataña del proyecto
+    Poder editarlos
+    Poder eliminar los proyectos si eres propietario
+
+Pulir las autorizaciones en el routeo de las paginas
+
+--------------------------------------- Todo lo de arriba esta en processs ---------------------------------------

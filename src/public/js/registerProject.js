@@ -47,52 +47,31 @@ function handleDrop(event) {
     }
 }
 
+function submitForm(event) {
+    event.preventDefault();
 
-
-const form = document.getElementById('loginForm');
-
-
-form.addEventListener('submit', evt => {
-    evt.preventDefault();
-
-    console.log("Se lee el submit");
-    // Obtener los datos del formulario
+    // Obtén los datos del formulario
     const formData = new FormData(document.getElementById('loginForm'));
-    const data = {};
-
-    // Iterar sobre cada entrada del FormData y asignarla al objeto data
-    for (let [key, value] of formData.entries()) {
-        data[key] = value;
-    }
-    const jsonData = JSON.stringify(data);
-
-
-
-    // Realizar la solicitud POST usando Fetch
-    if (revisarDatos(formData)) {
-        console.log("Un exito el ingreso de datos");
-        console.log(jsonData);
-        fetch('/api/projects', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: jsonData,
+    // Realiza la petición POST al servidor
+    fetch('/api/projects', {
+        method: 'POST',
+        // headers: {
+        //     'Content-Type': 'application/json',
+        // },
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Proyecto creado:', data);
         })
-            .then(response => response.json())
-            .then(data => {
-                // Manejar la respuesta del servidor
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                // Manejar errores de la solicitud
-                console.error('Error en la solicitud:', error);
-            });
-    } else {
-        alert('Todos los campos son obligatorios. Por favor, complete el formulario.');
-    }
+        .catch(error => {
+            console.error('Error al crear el proyecto:', error);
+        });
+}
 
-})
+// Asocia la función al evento submit del formulario
+document.getElementById('loginForm').addEventListener('submit', submitForm);
+
 
 function revisarDatos(formData) {
     const name = formData.get('name');
@@ -105,9 +84,8 @@ function revisarDatos(formData) {
     const locationCountry = formData.get('location.country');
     const locationProvince = formData.get('location.province');
     const thumbnail = formData.get('thumbnail');
-
     // Realiza la validación de los datos según tus criterios
-    if (!name || !description || !amountNecessary || !steps || !locationAddress || !locationCity || !locationState || !locationCountry || !locationProvince || !thumbnail) {
+    if (!name || !description || !amountNecessary || !steps || !locationAddress || !locationCity || !locationState || !locationCountry || !locationProvince) {
         console.log("Faltan datos");
         return false; // Detiene el envío del formulario si hay campos vacíos
     }

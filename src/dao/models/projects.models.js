@@ -14,9 +14,11 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+  },
   thumbnail: {
     type: String,
-    description: String
   },
   amountNecessary: {
     type: Number,
@@ -35,40 +37,37 @@ const projectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
         required: true,
-      },
-      comment: {
-        type: String,
-        required: true,
-      },
-      rating: {
-        type: Number,
-        required: true,
+        comment: {
+          type: String,
+          required: true,
+        },
+        rating: {
+          type: Number,
+          required: true,
+        },
       },
     },
   ],
   location: {
     address: {
       type: String,
-      required: true,
     },
     city: String,
     state: String,
     country: String,
     province: String,
   },
-  investors: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'users',
-        required: true,
-      },
+  investors: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
       amount: {
         type: Number,
         required: true,
       },
-    },
-  ],
+    }
+  }],
   score: {
     type: Number,
     default: 0,

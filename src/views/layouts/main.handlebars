@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    {{!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
+    {{!--
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
-    {{!--<link rel="short cut icon" href="./../assets/img/icono/fuego.png" type="image/x-icon">
+
+    {{!--
+    <link rel="short cut icon" href="./../assets/img/icono/fuego.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
@@ -22,20 +24,41 @@
         crossorigin="anonymous"></script>
     <meta name="keywords"
         content="estufas, hornos, salamandras, calefaccion, san juan, tromen, istilart, campo, parrillas, bandejas, caños inoxidables, caños garbanizado, kit de instalacion para estufas, Miguel Agüero, Francisco Agüero">
-     <meta name="description"
+    <meta name="description"
         content="Negocio de estufas en San Juan, hornos, parrillas y caños para instalación. Manejamos marcas como Tromen, Istilart, Campo">
- --}}
-    {{!-- <link rel="stylesheet" href="./estilos/main.css"> --}}
-    <link rel="stylesheet" href="./estilos/{{style}}">
+    --}}
+    {{!--
+    <link rel="stylesheet" href="./estilos/main.css"> --}}
+    <link rel="stylesheet" href="../estilos/{{style}}">
     <title>{{title}}</title>
-    
+
 </head>
 
 <body>
-    {{{body}}}{{!-- 
+    {{#if header}}
+    <header>
+        <h1>Inversiones Hobby</h1>
+        <p>¡Bienvenido, {{name}}!</p>
+        <div>
+            <button>Inicio</button>
+            <button>Opciones</button>
+
+            <a href="/api/sessions/logout">Logout</a>
+            <a href="/registerProject">Registrar Proyecto</a>
+        </div>
+    </header>
+    {{/if}}
+    {{{body}}}
+    {{#if footer}}
+    <footer>
+        <p>&copy; 2023 Inversiones Hobby. Todos los derechos reservados.</p>
+    </footer>
+    {{/if}}
+    {{!--
     <h1>{{styles}}</h1> --}}
-    
-    {{!-- <script src="socket.io/socket.io.js"></script>
+
+    {{!--
+    <script src="socket.io/socket.io.js"></script>
     <script src="js/socket.js"></script> --}}
 </body>
 

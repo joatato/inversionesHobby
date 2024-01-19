@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+.error-container {
+    text-align: center;
+}
+.error-container h1 {
+    color: #e74c3c;
+}
+.error-container p {
+    color: #333;
+}

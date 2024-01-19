@@ -13,7 +13,7 @@ export const esClaveValida=(password, usuario)=>{
 const SECRET=process.env.TOKEN_SECRET;
 
 export const creaJWT=(usuario)=>{
-    return jwt.sign({usuario},SECRET,{expiresIn:60});
+    return jwt.sign({usuario},SECRET,{expiresIn:360});
 }
 
 export const validarJWT=(req, res, next)=>{
@@ -35,7 +35,10 @@ export const validarJWT=(req, res, next)=>{
                     console.log('token desde query params')
                     token=req.query.codertoken;
                 }else{
-                    return res.sendStatus(401);
+                    console.log("No se pudo obtener el token xd");
+                    return res.sendStatus(401,{
+                        messages:"No se pudo obtener el token"
+                    });
                 }
             }
         }
@@ -43,7 +46,10 @@ export const validarJWT=(req, res, next)=>{
     
     jwt.verify(token, SECRET, (error, credenciales)=>{
         if(error){
-            res.sendStatus(401);
+            console.log("Mal al comprobar el secreto xd");
+            res.sendStatus(401,{
+                messages:"Mal al comprobar el secreto"
+            });
         }else{
             req.user=credenciales.usuario;
             next();
@@ -61,9 +67,10 @@ export const passportCall=(estrategia)=>{
                 if(!info){
                     return res.status(401).send('No autenticado');
                 }else{
-                    return res.status(401).send({error:info.messages?info.messages:info.toString()})
+                    return res.status(401).redirect('/login')
                 }
             }
+            if(usuario.email == 'tato@gmail.com') { usuario.rol = 'ADMIN'}
             req.user=usuario;
             next();
         })(req, res, next)

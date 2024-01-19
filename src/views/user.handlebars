@@ -1,0 +1,22 @@
+<section>
+    <a href="/" class="back-button">Volver a la Página Principal</a>
+    <h1>{{user.name}}</h1>
+    <h2>{{user.email}}</h2>
+    <br>
+    <h2>Localidad del usuario</h2>
+    {{#if user.location.a}}
+    <h2>Direccion: {{user.location.address}}</h2>
+    <h2>Ciudad: {{user.location.city}}</h2>
+    <h2>Pais: {{user.location.country}}</h2>
+    <h2>Estado: {{user.location.state}}</h2>
+    <h2>Provincia: {{user.location.province}}</h2>
+    {{/if}}
+    <br>
+    <h2>Rol: {{user.role}}</h2>
+    <h2>Fecha de ingreso a la app: {{user.date}}</h2>
+    <br>
+    <h1>Proyectos</h1>
+    {{#each projects}}
+    <a href="../project/{{this._id}}">{{this.name}}</a>
+    {{/each}}
+</section>

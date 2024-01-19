@@ -1,0 +1,11 @@
+<section>
+    <a href="/" class="back-button">Volver a la Página Principal</a>
+    <h1>Nombre del Proyecto: {{project.name}}</h1>
+    <p>Descripción del proyecto: {{project.description}}</p>
+    <p>amountNecessary: {{project.amountNecessary}}</p>
+    <img src="../files/img/{{project.thumbnail}}" alt="">
+    <p>location: {{project.location.address}}</p>
+    <p>propietario: <a href="../user/{{owner._id}}">{{owner.name}}</a></p>
+    <!-- Botón de inversión -->
+    <button id="invertirBtn" class="invertir">Invertir</button>
+</section>
